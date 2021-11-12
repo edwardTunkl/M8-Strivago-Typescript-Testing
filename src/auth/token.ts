@@ -2,7 +2,7 @@ import createHttpError from "http-errors";
 import UserSchema from "../users/schema.js";
 import { verifyJWT } from "./tools.js";
 
-export const JWTAuthMiddleware = async (req, res, next) => {
+export const JWTAuthMiddleware = async (req: any, res:any , next: any) => {
   // 1. Check if Authorization header is received, if it is not --> 401
   if (!req.headers.authorization) {
     next(
@@ -12,11 +12,11 @@ export const JWTAuthMiddleware = async (req, res, next) => {
     try {
       // 2. If we receive Authorization header we extract the token from the header
 
-      const token = req.headers.authorization.replace("Bearer ", "");
+      const token: string = req.headers.authorization.replace("Bearer ", "");
 
       // 3. Verify the token, if everything goes fine we are getting back the _id of the logged in user, otherwise an error will be thrown by jwt library
 
-      const decodedToken = await verifyJWT(token);
+      const decodedToken: any = await verifyJWT(token);
 
       console.log("DECODED TOKEN ", decodedToken);
 

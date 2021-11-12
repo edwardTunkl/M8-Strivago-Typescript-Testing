@@ -1,10 +1,10 @@
 import express from "express";
 import createHttpError from "http-errors";
 
-import AccomodationSchema from "./schema.js";
-import { JWTAuthenticate } from "../auth/tools.js";
-import { JWTAuthMiddleware } from "../auth/token.js";
-import { hostOnlyMiddleware } from "../auth/hostOnly.js";
+import AccomodationSchema from "./schema";
+import { JWTAuthenticate } from "../auth/tools";
+import { JWTAuthMiddleware } from "../auth/token";
+import { hostOnlyMiddleware } from "../auth/hostOnly";
 
 const accomodationRouter = express.Router();
 
@@ -35,7 +35,7 @@ accomodationRouter.post(
   "/",
   JWTAuthMiddleware,
   hostOnlyMiddleware,
-  async (req, res, next) => {
+  async (req:any, res, next) => {
     try {
       console.log(req.user._id.toString());
       const newAccomodation = new AccomodationSchema({

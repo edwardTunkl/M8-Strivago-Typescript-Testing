@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
+import { UserModel, UserSchemaType } from "../types/types";
+
 const { Schema, model } = mongoose;
 
-const UserSchema = new Schema({
+
+
+const UserSchema = new Schema<UserModel, UserSchemaType>({
   email: { type: String, required: true },
   password: { type: String, required: true },
   role: { type: String, default: "Guest", enum: ["Guest", "Host"] },
@@ -22,7 +26,7 @@ UserSchema.pre("save", async function (next) {
 UserSchema.methods.toJSON = function () {
   const userDocument = this;
   const userObject = userDocument.toObject();
-  delete userObject.password;
+  
   // delete userObject.__v
 
   return userObject;
@@ -39,4 +43,4 @@ UserSchema.statics.checkCredentials = async function (email, plainPW) {
   } else return null;
 };
 
-export default model("users", UserSchema);
+export default model<UserModel, UserSchemaType>("users", UserSchema);
