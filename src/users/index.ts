@@ -1,7 +1,7 @@
 import express from "express";
 import createHttpError from "http-errors";
 
-import UserSchema from "./schema.js";
+import UserSchema from "./schema";
 import { JWTAuthenticate } from "../auth/tools";
 import AccomodationSchema from "../accomodation/schema";
 import { JWTAuthMiddleware } from "../auth/token";

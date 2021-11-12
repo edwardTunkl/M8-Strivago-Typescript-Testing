@@ -3,7 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 // import passport from "passport";
 import listEndpoints from "express-list-endpoints";
-import usersRouter from "./users/index.js";
+import usersRouter from "./users/index";
 import accomodationRouter from "./accomodation/index";
 
 

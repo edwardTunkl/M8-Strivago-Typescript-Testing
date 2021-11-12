@@ -52,9 +52,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var http_errors_1 = __importDefault(require("http-errors"));
-var schema_js_1 = __importDefault(require("./schema.js"));
+var schema_1 = __importDefault(require("./schema"));
 var tools_1 = require("../auth/tools");
-var schema_1 = __importDefault(require("../accomodation/schema"));
+var schema_2 = __importDefault(require("../accomodation/schema"));
 var token_1 = require("../auth/token");
 var hostOnly_1 = require("../auth/hostOnly");
 var usersRouter = express_1.default.Router();
@@ -64,7 +64,7 @@ usersRouter.get("/", function (req, res, next) { return __awaiter(void 0, void 0
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, schema_js_1.default.find()];
+                return [4 /*yield*/, schema_1.default.find()];
             case 1:
                 users = _a.sent();
                 res.send(users);
@@ -83,7 +83,7 @@ usersRouter.post("/register", function (req, res, next) { return __awaiter(void 
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 3, , 4]);
-                newUser = new schema_js_1.default(req.body);
+                newUser = new schema_1.default(req.body);
                 return [4 /*yield*/, newUser.save()];
             case 1:
                 _id = (_a.sent())._id;
@@ -107,7 +107,7 @@ usersRouter.post("/login", function (req, res, next) { return __awaiter(void 0, 
             case 0:
                 _b.trys.push([0, 5, , 6]);
                 _a = req.body, email = _a.email, password = _a.password;
-                return [4 /*yield*/, schema_js_1.default.checkCredentials(email, password)];
+                return [4 /*yield*/, schema_1.default.checkCredentials(email, password)];
             case 1:
                 user = _b.sent();
                 if (!user) return [3 /*break*/, 3];
@@ -135,7 +135,7 @@ usersRouter.get("/me/accomodation", token_1.JWTAuthMiddleware, hostOnly_1.hostOn
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 console.log(req.user._id.toString());
-                return [4 /*yield*/, schema_1.default.find({
+                return [4 /*yield*/, schema_2.default.find({
                         host: req.user._id.toString(),
                     })];
             case 1:

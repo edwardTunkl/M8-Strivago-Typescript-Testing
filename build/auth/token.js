@@ -42,7 +42,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.JWTAuthMiddleware = void 0;
 var http_errors_1 = __importDefault(require("http-errors"));
 var schema_js_1 = __importDefault(require("../users/schema.js"));
-var tools_js_1 = require("./tools.js");
+var tools_1 = require("./tools");
 var JWTAuthMiddleware = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var token, decodedToken, user, error_1;
     return __generator(this, function (_a) {
@@ -54,7 +54,7 @@ var JWTAuthMiddleware = function (req, res, next) { return __awaiter(void 0, voi
             case 1:
                 _a.trys.push([1, 4, , 5]);
                 token = req.headers.authorization.replace("Bearer ", "");
-                return [4 /*yield*/, (0, tools_js_1.verifyJWT)(token)];
+                return [4 /*yield*/, (0, tools_1.verifyJWT)(token)];
             case 2:
                 decodedToken = _a.sent();
                 console.log("DECODED TOKEN ", decodedToken);
